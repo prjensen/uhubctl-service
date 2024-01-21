@@ -1,0 +1,12 @@
+[Unit]
+Description=uhubctl cycle usb port power service
+# wait until system has stabilized
+After=systemd-udev-settle.service network.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/local/bin/uhubctl.sh
+
+[Install]
+WantedBy=multi-user.target
