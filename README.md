@@ -27,13 +27,13 @@ Find your device hub and port by looking at dmesg after plugging it in, or
 lsusb, or other tooling...
 
 2. Copy the uhubctl.sh to /usr/local/bin/uhubctl.sh.  Make sure that it is mode
-0744.
+'0744'.
 
 3. Copy the uhubctl.service file to /etc/systemd/system/uhubctl.service and then
 run: `sudo systemctl daemon-reload`
 
 This new 'service' depends on udev and networking to be up before it will execute:
-`After=systemd-udev-settle.service network.target
+`After=systemd-udev-settle.service network.target`
 
 Update the 'After' section for your use case
 
