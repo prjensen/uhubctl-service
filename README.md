@@ -6,16 +6,15 @@ happens is still not identified, and *this is a workaround* - not ideal but
 allows the RPi to reboot properly and subsequently start monitoring the device
 attached to the usb port again.
 
-
 # How to use this:
 
-## Dependencies - uhubctl installed.  
+## Dependencies - uhubctl installed
 Check your distribution package manager.  Raspbian bullseye installation was
 accomplished with:
 
 `sudo apt install uhubctl`
 
-## Install/configure: 
+## Install/configure
 1. Copy the sample-uhubctl.ini file to /etc/uhubctl.ini.
 Edit the file to specify the usb hub and specific port that you want to cycle
 (CMDVAR).  In the sample file, it power cycles port 5 on hub 1-1.  Read the
@@ -40,7 +39,7 @@ Update the 'After' section for your use case
 4. Enable the unit file:
 `sudo systemctl enable uhubctl.service`
 
-5. Optional - but highly recommended 
+5. Optional - but highly recommended:
 Edit your other service to depend on 'uhubctl.service' by adding:
 `After=uhubctl.service` in the [Unit] section of your dependent service.  Note:
 if you already have an 'After' defined, this is a space separated list, so just
@@ -51,6 +50,10 @@ After=
 After=1.service uhubctl.service
 ```
 See the `man systemd` and `man systemd.unit` pages for more info.  This isn't a
-systemd tutorial ;) 
+systemd tutorial ;)
 **Don't forget to re-run** `sudo systemctl daemon-reload` **after you make changes**
 **to any systemd unit files**
+
+
+###Thanks to [mikeysklar](https://forums.adafruit.com/viewtopic.php?p=999753#p999753) for the recommendation to use uhubctl in the first place.
+
